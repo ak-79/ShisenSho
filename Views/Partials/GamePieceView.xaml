@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm ="clr-namespace:ShisenSho.ViewModels"
+             xmlns:views ="clr-namespace:ShisenSho.Views"
+             xmlns:partials ="clr-namespace:ShisenSho.Views.Partials"
+             x:Class="ShisenSho.Views.Partials.GamePieceView"
+             x:DataType="vm:GamePieceViewModel"
+             HorizontalOptions="Center" VerticalOptions="Center"
+             Margin="0" Padding="0" >
+    <Grid>
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding HandleSelection}" NumberOfTapsRequired="1" />
+        </Grid.GestureRecognizers>
+
+        <!-- Wall -->
+        <Image Source="wall.png" IsVisible="{Binding IsWall}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+
+
+        <!-- Empty Cell -->
+        <Image Source="empty.png" IsVisible="{Binding IsEmpty}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+
+        <!-- Real Tile -->
+        <Image Source="tile.png" IsVisible="{Binding IsTile}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+        <Label Text="{Binding Emoji}" IsVisible="{Binding IsTile}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center" FontAutoScalingEnabled="True"/>
+
+        <!-- Selection Highlight -->
+        <Image Source="highlight.png" IsVisible="{Binding IsSelected}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+
+        <!-- Path Highlight -->
+        <Image Source="pathns.png" IsVisible="{Binding IsPathVertical}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+        <Image Source="pathwe.png" IsVisible="{Binding IsPathHorizontal}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+        <Image Source="pathne.png" IsVisible="{Binding IsPathNorthEast}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+        <Image Source="pathnw.png" IsVisible="{Binding IsPathNorthWest}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+        <Image Source="pathse.png" IsVisible="{Binding IsPathSouthEast}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+        <Image Source="pathsw.png" IsVisible="{Binding IsPathSouthWest}" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill"/>
+    </Grid>
+</ContentView>

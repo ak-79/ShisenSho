@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShisenSho.Views.MainView"
+             xmlns:vm ="clr-namespace:ShisenSho.ViewModels"
+             xmlns:views ="clr-namespace:ShisenSho.Views"
+             xmlns:partials ="clr-namespace:ShisenSho.Views.Partials"
+             x:DataType="vm:MainViewModel">
+    <!--Shell.NavBarIsVisible="False" >-->
+    <Grid HorizontalOptions="Center" VerticalOptions="Center" Margin="0" Padding="0">
+        <!--Title Screen-->
+        <Grid IsVisible="{Binding IsTitleScreen}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0" Padding="0">
+            <VerticalStackLayout Padding="30,0" Spacing="25" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="ShisenSho" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="High Score: " Grid.Column="0" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding HighScore}" Grid.Column="1" Padding="5,0,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                </Grid>
+                <Button Text="Play" Command="{Binding OnPlayClicked}" />
+            </VerticalStackLayout>
+        </Grid>
+        <!--Selection Screen-->
+        <Grid IsVisible="{Binding IsSelectionScreen}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0" Padding="0">
+            <VerticalStackLayout Padding="30,0" Spacing="25" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Select Difficulty" />
+                <Button Text="Easy" Command="{Binding OnEasyClicked}" />
+                <Button Text="Medium" Command="{Binding OnMediumClicked}" />
+                <Button Text="Hard" Command="{Binding OnHardClicked}" />
+            </VerticalStackLayout>
+        </Grid>
+        <!--Game Screen-->
+        <Grid IsVisible="{Binding IsGameScreen}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0" Padding="0">
+            <partials:GameBoardView BindingContext="{Binding CurrentGame}" Padding="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Grid>
+        <!--End Screen-->
+        <Grid IsVisible="{Binding IsEndScreen}" HorizontalOptions="Center" VerticalOptions="Center" Margin="0" Padding="0">
+            <VerticalStackLayout Padding="30,0" Spacing="25" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="You Win!" IsVisible="{Binding IsWon}" />
+                <Grid IsVisible="{Binding IsWon}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Score: " Grid.Column="0" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                    <Label Text="{Binding HighScore}" Grid.Column="1" Padding="5,0,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                </Grid>
+                <Label Text="You Lose!" IsVisible="{Binding IsLost}" />
+                <Button Text="Play Again" Command="{Binding OnPlayAgainClicked}" />
+                <Button Text="Back to main menu" Command="{Binding OnMainMenuClicked}" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>

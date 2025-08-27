@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm ="clr-namespace:ShisenSho.ViewModels"
+             xmlns:views ="clr-namespace:ShisenSho.Views"
+             xmlns:partials ="clr-namespace:ShisenSho.Views.Partials"
+             xmlns:om="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
+             x:Class="ShisenSho.Views.Partials.GameBoardView"
+             x:DataType="vm:GameBoardViewModel"
+             HorizontalOptions="Center" VerticalOptions="Center" 
+             Margin="0" Padding="0">
+    <Grid Padding="0" Margin="0" RowDefinitions="Auto" ColumnDefinitions="Auto">
+        <CollectionView ItemsSource="{Binding Board}" Margin="0" HorizontalOptions="Center" VerticalOptions="Center" ItemSizingStrategy="MeasureFirstItem" >
+            <CollectionView.ItemsLayout >
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="0"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="om:ObservableCollection(vm:GamePieceViewModel)">
+                    <CollectionView ItemsSource="{Binding .}" Margin="0" HorizontalOptions="Fill" VerticalOptions="Fill" ItemSizingStrategy="MeasureFirstItem" >
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="0"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="vm:GamePieceViewModel">
+                                <partials:GamePieceView BindingContext="{Binding .}" Margin="0" Padding="0" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentView>

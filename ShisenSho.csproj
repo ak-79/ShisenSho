@@ -1,8 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<!-- iPhone Framework / Runtime -->
 		<TargetFrameworks>net9.0-ios</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+		<RuntimeIdentifiers>ios-arm64</RuntimeIdentifiers>
+		<!-- Windows Framework / Runtime -->
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">net9.0-windows10.0.19041.0</TargetFrameworks>
+		<RuntimeIdentifiers Condition="$([MSBuild]::IsOSPlatform('windows'))">win-x64;win10-x64</RuntimeIdentifiers>
 
 		<OutputType>Exe</OutputType>
 		<RootNamespace>ShisenSho</RootNamespace>

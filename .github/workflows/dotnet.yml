@@ -34,6 +34,8 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+    - name: Install MAUI Workloads
+      run: dotnet workload restore
     - name: Restore dependencies
       run: dotnet restore
     - name: Build

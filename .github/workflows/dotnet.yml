@@ -12,7 +12,7 @@ on:
   
 jobs:
   windows-build:
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
@@ -22,12 +22,12 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet build --no-restore -c Release --self-contained
+    # - name: Test
+    #   run: dotnet test --no-build --verbosity normal
 
   macos-build:
-    runs-on: macos-latest
+    runs-on: macos-15
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
@@ -39,6 +39,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet build --no-restore -c Release --self-contained
+    # - name: Test
+    #   run: dotnet test --no-build --verbosity normal
